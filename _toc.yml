@@ -5,10 +5,10 @@ format: jb-book
 root: intro
 
 parts:
-  - caption: Introduction
-    chapters:
-      - file: markdown
-      - file: notebooks
+  # - caption: Introduction
+  #   chapters:
+  #     - file: markdown
+  #     - file: notebooks
 
   - caption: Topic Guides
     chapters:
@@ -18,11 +18,11 @@ parts:
         title: Running a trained StarDist3D model in napari
       - file: pages/qupath-cellpose
         title: Running Cellpose/Omnipose in QuPath
-      - file: pages/cellpose-qupath-casestudy
-        title: Cellpose in QuPath for automated characterization of intestinal villi of broiler chicks 
-      - file: pages/ilastik-fiji
-        title: Using ilastik with GPU-support and FIJI
+      # - file: pages/cellpose-qupath-casestudy
+      #   title: Cellpose in QuPath for automated characterization of intestinal villi of broiler chicks 
+      # - file: pages/ilastik-fiji
+      #   title: Using ilastik with GPU-support and FIJI
 
-  - caption: About
-    chapters:
-      - file: mymarkdownfile
+  # - caption: About
+  #   chapters:
+  #     - file: mymarkdownfile

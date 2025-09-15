@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,8 +60,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/cellpose-qupath-casestudy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Auto-Context (Two-Stage) Pixel Classification for Image Segmentation using ilastik with FIJI" href="ilastik-fiji.html" />
-    <link rel="prev" title="Running Cellpose in QuPath" href="qupath-cellpose.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,25 +179,11 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Topic Guides</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Topic Guides</span></p>
-<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="stardist3Dlocally.html">Training stardist2D/3D models on local GPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stardist3D-model-napari.html">Running a trained StarDist3D model in napari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qupath-cellpose.html">Running Cellpose/Omnipose in QuPath</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Cellpose in QuPath for automated characterization of intestinal villi of broiler chicks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ilastik-fiji.html">Auto-Context (Two-Stage) Pixel Classification for Image Segmentation using ilastik with FIJI</a></li>
-
-
-
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../mymarkdownfile.html">Here’s my sample title</a></li>
 </ul>
 
     </div>
@@ -460,7 +446,7 @@ cellpose
 <a class="reference internal image-reference" href="../_images/cellpose_villi_image.png"><img alt="../_images/cellpose_villi_image.png" src="../_images/cellpose_villi_image.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Intestinal villi (hematoxylin stain) in the Cellpose GUI</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Intestinal villi (hematoxylin stain) in the Cellpose GUI</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ol class="arabic simple" start="3">
@@ -475,14 +461,14 @@ cellpose
 <a class="reference internal image-reference" href="../_images/cellpose_villi_predict_030pix.png"><img alt="../_images/cellpose_villi_predict_030pix.png" src="../_images/cellpose_villi_predict_030pix.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text">“cyto3” model prediction of intestinal villi using 30 pixel diameter</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-text">“cyto3” model prediction of intestinal villi using 30 pixel diameter</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../_images/cellpose_villi_predict_200pix.png"><img alt="../_images/cellpose_villi_predict_200pix.png" src="../_images/cellpose_villi_predict_200pix.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">“cyto3” model prediction of intestinal villi using 200 pixel diameter</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-text">“cyto3” model prediction of intestinal villi using 200 pixel diameter</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ol class="arabic simple" start="4">
@@ -531,24 +517,6 @@ cellpose
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="qupath-cellpose.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Running Cellpose in QuPath</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="ilastik-fiji.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Auto-Context (Two-Stage) Pixel Classification for Image Segmentation using ilastik with FIJI</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
