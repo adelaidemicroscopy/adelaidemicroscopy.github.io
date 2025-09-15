@@ -3,7 +3,7 @@
 
 These instruction were last tested on 25 August 2025. If you experience issues, I encourage you to reach out via email to bryant.roberts@adelaide.edu.au or submit an issue on image.sc forum.
 
-```{figure} C:/users/a1230264/bioimaging/images/cellpose_banner.png
+```{figure} ../images/cellpose_banner.png
 --- 
 width: 100% 
 ---
@@ -235,7 +235,7 @@ nvidia-smi
 ```
 In the second line, the `Driver Version: xxx.xx` will be listed.
 
-```{figure} C:/users/a1230264/bioimaging/images/nvidia-driver-version.png
+```{figure} ../images/nvidia-driver-version.png
 ---
 width: 100%
 ---
@@ -271,7 +271,7 @@ cellpose
 ```
 The GUI will open as shown below. If you have configured GPU support correctly, under the `Segmentation` options a check mark will appear in the `use GPU` box
 
-```{figure} C:/users/a1230264/bioimaging/images/cellpose-gui-v3.png
+```{figure} ../images/cellpose-gui-v3.png
 ---
 width: 80%
 ---
@@ -295,7 +295,7 @@ See {ref}`Appendices <running-cellpose-from-bat-file>`.
 
 <div style="display: flex; gap: 20px;"> <div style="flex: 1;">
 
-```{figure} C:/users/a1230264/bioimaging/images/rice_stem.png
+```{figure} ../images/rice_stem.png
 ---
 alt: Cell 1
 width: 100%
@@ -304,7 +304,7 @@ Rice Stem magnification 40x
 ```
 </div> <div style="flex: 1;">
 
-```{figure} C:/users/a1230264/bioimaging/images/cellpose_overlay_rice_stem.png
+```{figure} ../images/cellpose_overlay_rice_stem.png
 --- 
 alt: Cell 2 
 width: 100% 
@@ -355,7 +355,7 @@ C:\Users\<USERNAME>\AppData\Local\miniforge3\envs\cellpose3\python.exe
 4. In QuPath, click `Edit > Preferences` to open the Preferences window.
 5. Click the `Cellpose/Omnipose` drop-down, and text boxes will appear to enter the `python.exe` locations.
 
-```{figure} C:/users/a1230264/bioimaging/images/qupath_preferences_cellpose.png
+```{figure} ../images/qupath_preferences_cellpose.png
 --- 
 width: 60% 
 ---
@@ -392,7 +392,7 @@ CALL conda activate <ENV_NAME>
 cellpose
 pause
 ```
-```{figure} C:/users/a1230264/bioimaging/images/open_bat_notepad.png
+```{figure} ../images/open_bat_notepad.png
 ---
 width: 80%
 ---
@@ -401,7 +401,7 @@ Create .bat file using notepad
 3. Save the file as `cellpose_gui.bat` or similar on your desktop (or wherever you like)
     - Do not save as a `.txt` file. 
     - In the Save dialog, set Save as type: `All Files`
-```{figure} C:/users/a1230264/bioimaging/images/save_bat_file.png
+```{figure} ../images/save_bat_file.png
 ---
 width: 80%
 ---

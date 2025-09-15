@@ -60,7 +60,7 @@ You can open the napari GUI using the following command:
 napari
 ```
 
-```{figure} C:/users/a1230264/bioimaging/images/napari-gui.png
+```{figure} ../images/napari-gui.png
 ---
 width: 100%
 ---
@@ -76,7 +76,7 @@ We will run a pre-trained model and our own model on a sample image to test our 
 
 **2.2** Open the stardist-napari plugin from the menu `Plugins > StarDist (stardist-napari)`
 
-```{figure} C:/users/a1230264/bioimaging/images/napari-gui-stardist.png
+```{figure} ../images/napari-gui-stardist.png
 ---
 width: 100%
 ---
@@ -93,7 +93,7 @@ StarDist sample data and napari plugin
 **2.4** Click `Run` to produce the StarDist labels and polyhedra
 Cell labels (one colour per cell) will appear on the `nuclei_3D` image as below. You can view these both in 2D and 3D by clicking the `Toggle ndisplay` button (second button in the bottom left panel, or press {kbd}`Ctrl+Y`).
 
-```{figure} C:/users/a1230264/bioimaging/images/napari-gui-stardist-label-image.png
+```{figure} ../images/napari-gui-stardist-label-image.png
 ---
 width: 100%
 ---
