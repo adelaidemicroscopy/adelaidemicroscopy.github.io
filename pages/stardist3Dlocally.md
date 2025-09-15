@@ -12,7 +12,7 @@ This post is the first in a part of a series on StarDist for nuclear segmentatio
 ## Introduction
 StarDist(ref,ref) is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets. 
 
-```{figure} C:/users/a1230264/bioimaging/_static/napari-gui-he-predict.png
+```{figure} C:/users/a1230264/bioimaging/images/napari-gui-he-predict.png
 ---
 alt: Cell 1
 width: 100%
@@ -58,7 +58,7 @@ We will now use Mamba, a fast drop-in replacement for Conda, to create our first
 **2.1** Open the Miniforge Prompt (press the {kbd}`Windows` key, type `Miniforge Prompt`, and press {kbd}`Enter`)
 
 When you open the prompt window, it should look like the below image.
-![](C:/users/a1230264/bioimaging/_static/miniforge-base.png)
+![](C:/users/a1230264/bioimaging/images/miniforge-base.png)
 
 As shown in the image, you are in the `(base)` environment. From here we will create a custom Conda environment to train our own StarDist model using the local device GPU.
 
@@ -75,7 +75,7 @@ mamba activate stardist-train
 ```
 
 In the Miniforge Prompt, you will see that you have now entered the `stardist-train` environment. 
-![](C:/users/a1230264/bioimaging/_static/miniforge-base.png) <!-- update the image to stardist-train -->
+![](C:/users/a1230264/bioimaging/images/miniforge-base.png) <!-- update the image to stardist-train -->
 
 **2.4** Run the following commands to install the specified versions of TensorFlow, NumPy, gputools and StarDist that are compatible for running StarDist with GPU support. Enter each command line-by-line and press `enter`.
 ```bash
@@ -123,7 +123,7 @@ By default, the file browser interface opens to the location from where you laun
 ```bash
 jupyter notebook --notebook-dir=D:/adelaidemicroscopy
 ```
-![](C:/users/a1230264/bioimaging/_static/jupyter-notebook-file-browser.png)
+![](C:/users/a1230264/bioimaging/images/jupyter-notebook-file-browser.png)
 
 **3.4** To close Jupyter notebook, go to the Miniforge Prompt and press {kbd}`Ctrl+C`.  
 The terminal should now return to the `(stardist-train)` environment.
@@ -217,7 +217,7 @@ If your environment and notebook was configured correctly, then the demo should 
   c. Right-click on any of the column headings (e.g., "Name", "CPU"). From the list, select "GPU" to add as a column.
   d. Look for the `python.exe` app. When the notebook is training you should see an increase in the GPU `%`.
 
-```{figure} C:/users/a1230264/bioimaging/_static/python-gpu-use.png
+```{figure} C:/users/a1230264/bioimaging/images/python-gpu-use.png
 ---
 alt: Cell 1
 width: 100%
