@@ -1,0 +1,28 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+
+parts:
+  - caption: Introduction
+    chapters:
+      - file: markdown
+      - file: notebooks
+
+  - caption: Topic Guides
+    chapters:
+      - file: pages/stardist3Dlocally
+        title: Training stardist2D/3D models on local GPU
+      - file: pages/stardist3D-model-napari
+        title: Running a trained StarDist3D model in napari
+      - file: pages/qupath-cellpose
+        title: Running Cellpose/Omnipose in QuPath
+      - file: pages/cellpose-qupath-casestudy
+        title: Cellpose in QuPath for automated characterization of intestinal villi of broiler chicks 
+      - file: pages/ilastik-fiji
+        title: Using ilastik with GPU-support and FIJI
+
+  - caption: About
+    chapters:
+      - file: mymarkdownfile
