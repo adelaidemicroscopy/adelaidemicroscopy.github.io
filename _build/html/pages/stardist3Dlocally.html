@@ -179,10 +179,13 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Topic Guides</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">StarDist on local GPU</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Training stardist2D/3D models on local GPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stardist3D-model-napari.html">Running a trained StarDist3D model in napari</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cellpose in QuPath</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="qupath-cellpose.html">Running Cellpose/Omnipose in QuPath</a></li>
 </ul>
 
@@ -417,12 +420,12 @@ document.write(`
 </ul>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>StarDist is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets <span id="id1">[<a class="reference internal" href="#id3" title="Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers. Cell detection with star-convex polygons. In Medical Image Computing and Computer Assisted Intervention - MICCAI 2018 - 21st International Conference, Granada, Spain, September 16-20, 2018, Proceedings, Part II, 265–273. 2018. doi:10.1007/978-3-030-00934-2_30.">1</a>, <a class="reference internal" href="#id5" title="Martin Weigert and Uwe Schmidt. Nuclei instance segmentation and classification in histopathology images with stardist. In The IEEE International Symposium on Biomedical Imaging Challenges (ISBIC). 2022. doi:10.1109/ISBIC56247.2022.9854534.">3</a>, <a class="reference internal" href="#id4" title="Martin Weigert, Uwe Schmidt, Robert Haase, Ko Sugawara, and Gene Myers. Star-convex polyhedra for 3d object detection and segmentation in microscopy. In The IEEE Winter Conference on Applications of Computer Vision (WACV). March 2020. doi:10.1109/WACV45572.2020.9093435.">2</a>]</span>.</p>
-<figure class="align-default" id="id11">
+<p>StarDist is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets <span id="id1">[<a class="reference internal" href="#id3" title="Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers. Cell detection with star-convex polygons. In Medical Image Computing and Computer Assisted Intervention - MICCAI 2018 - 21st International Conference, Granada, Spain, September 16-20, 2018, Proceedings, Part II, 265–273. 2018. doi:10.1007/978-3-030-00934-2_30.">1</a>, <a class="reference internal" href="#id4" title="Martin Weigert, Uwe Schmidt, Robert Haase, Ko Sugawara, and Gene Myers. Star-convex polyhedra for 3d object detection and segmentation in microscopy. In The IEEE Winter Conference on Applications of Computer Vision (WACV). March 2020. doi:10.1109/WACV45572.2020.9093435.">2</a>, <a class="reference internal" href="#id5" title="Martin Weigert and Uwe Schmidt. Nuclei instance segmentation and classification in histopathology images with stardist. In The IEEE International Symposium on Biomedical Imaging Challenges (ISBIC). 2022. doi:10.1109/ISBIC56247.2022.9854534.">3</a>]</span>.</p>
+<figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../_images/napari-gui-he-predict.png"><img alt="Cell 1" src="../_images/napari-gui-he-predict.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Nuclear segmentation using stardist versatile (H&amp;E nuclei) model</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Nuclear segmentation using stardist versatile (H&amp;E nuclei) model</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>StarDist may provide reasonable models for nuclear segmentation out-of-the-box. However, sometimes it is necessary to train your own model for your microscopy data.</p>
@@ -444,7 +447,7 @@ document.write(`
 <p><strong>IMPORTANT:</strong> You will need administrative privileges on your computer. Contact your IT department for support.</p>
 <p>In the following procedure, we will install the following:</p>
 <ul class="simple">
-<li><p>miniforge</p></li>
+<li><p>Miniforge: <a class="github reference external" href="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe">conda-forge/miniforge</a></p></li>
 <li><p>TensorFlow 2.10.0</p>
 <ul>
 <li><p>this is the final version of tensorflow with official GPU support via pip on Windows</p></li>
@@ -590,23 +593,25 @@ Search the notebook for the following line:</p>
 <p class="admonition-title">Note</p>
 <p>By default, the notebook is written to run a quick demonstration. We will leave it as is for now. The next post is this series will describe configuring your own notebook for full training.</p>
 </div>
-<p><strong>4.11</strong> Confirm that stardist training is using your local GPU
-If your environment and notebook was configured correctly, then the demo should use your system GPU. You can confirm this in <code class="docutils literal notranslate"><span class="pre">Task</span> <span class="pre">Manager</span></code>.
-a. Open Task Manager. Press <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+Esc</span></code>.
-b. Click on the <code class="docutils literal notranslate"><span class="pre">Processes</span></code> tab.
-c. Right-click on any of the column headings (e.g., “Name”, “CPU”). From the list, select “GPU” to add as a column.
-d. Look for the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> app. When the notebook is training you should see an increase in the GPU <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
-<figure class="align-default" id="id12">
+<p><strong>4.11</strong> Confirm that stardist training is using your local GPU.</p>
+<p>If your environment and notebook was configured correctly, then the demo should use your system GPU. You can confirm this in <code class="docutils literal notranslate"><span class="pre">Task</span> <span class="pre">Manager</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Open Task Manager. Press <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+Esc</span></code>.</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Processes</span></code> tab.</p></li>
+<li><p>Right-click on any of the column headings (e.g., “Name”, “CPU”). From the list, select “GPU” to add as a column.</p></li>
+<li><p>Look for the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> app. When the notebook is training you should see an increase in the GPU <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p></li>
+</ol>
+<figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="../_images/python-gpu-use.png"><img alt="Cell 1" src="../_images/python-gpu-use.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">GPU usage shown for python.exe in the Task Manager during model training</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">GPU usage shown for python.exe in the Task Manager during model training</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Once the notebook run is complete, a folder called <code class="docutils literal notranslate"><span class="pre">example_model</span></code>, will be saved in the <code class="docutils literal notranslate"><span class="pre">models</span></code> folder. This is located alongside the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder and our <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files. E.g., located in <code class="docutils literal notranslate"><span class="pre">D:\adelaidemicroscopy\stardist3d\models\example_model\</span></code></p>
 <!--**INSERT FIGURE OF directory**--> 
-<p><strong>4.12</strong> Now close Jupyter notebook and exit the <code class="docutils literal notranslate"><span class="pre">stardist-train</span></code> environment
-Go to the Miniforge Prompt and press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">C</kbd></kbd>.</p>
+<p><strong>4.12</strong> Close Jupyter notebook and exit the <code class="docutils literal notranslate"><span class="pre">stardist-train</span></code> environment.</p>
+<p>Go to the Miniforge Prompt and press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>+<kbd class="kbd docutils literal notranslate">C</kbd></kbd>.</p>
 <p>The terminal should now return to the <code class="docutils literal notranslate"><span class="pre">(stardist-train)</span></code> environment. Enter the below command to return to the <code class="docutils literal notranslate"><span class="pre">(base)</span></code> environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>deactivate
 </pre></div>
@@ -630,10 +635,6 @@ Go to the Miniforge Prompt and press <kbd class="kbd compound docutils literal n
 <div class="citation" id="id5" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">3</a><span class="fn-bracket">]</span></span>
 <p>Martin Weigert and Uwe Schmidt. Nuclei instance segmentation and classification in histopathology images with stardist. In <em>The IEEE International Symposium on Biomedical Imaging Challenges (ISBIC)</em>. 2022. <a class="reference external" href="https://doi.org/10.1109/ISBIC56247.2022.9854534">doi:10.1109/ISBIC56247.2022.9854534</a>.</p>
-</div>
-<div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
 </div>
 </div>
 </div>
@@ -674,7 +675,7 @@ I encountered a **500: Internal Server Error** when attempting to open an .ipynb
 pip uninstall charset_normalizer -y
 pip install --no-cache-dir charset_normalizer==3.3.2
 pip install --force-reinstall beautifulsoup4
-``` --> --></section>
+``` --></section>
 </section>
 
     <script type="text/x-thebe-config">

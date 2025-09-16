@@ -7,15 +7,16 @@ root: intro
 parts:
   # - caption: Introduction
   #   chapters:
-  #     - file: markdown
   #     - file: notebooks
 
-  - caption: Topic Guides
+  - caption: StarDist on local GPU
     chapters:
       - file: pages/stardist3Dlocally
         title: Training stardist2D/3D models on local GPU
       - file: pages/stardist3D-model-napari
         title: Running a trained StarDist3D model in napari
+  - caption: Cellpose in QuPath
+    chapters:
       - file: pages/qupath-cellpose
         title: Running Cellpose/Omnipose in QuPath
       # - file: pages/cellpose-qupath-casestudy

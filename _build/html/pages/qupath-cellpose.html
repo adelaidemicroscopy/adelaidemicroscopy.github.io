@@ -178,10 +178,13 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Topic Guides</span></p>
-<ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">StarDist on local GPU</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="stardist3Dlocally.html">Training stardist2D/3D models on local GPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stardist3D-model-napari.html">Running a trained StarDist3D model in napari</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cellpose in QuPath</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Running Cellpose/Omnipose in QuPath</a></li>
 </ul>
 
@@ -402,7 +405,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendices">Appendices</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-cellpose-from-bat-file-running-cellpose-from-bat-file">Running Cellpose from .bat file {#running-cellpose-from-bat-file}</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-running-cellpose-from-bat-file">Appendix A: Running Cellpose from .bat file</a></li>
 </ul>
 </li>
 </ul>
@@ -418,7 +421,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="running-cellpose-in-qupath">
 <h1>Running Cellpose in QuPath<a class="headerlink" href="#running-cellpose-in-qupath" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://www.adelaide.edu.au/directory/bryant.roberts">Bryant Roberts</a>, September 2025</p>
+<p><a class="reference external" href="https://www.adelaide.edu.au/directory/bryant.roberts">Bryant Roberts</a>, September 16th, 2025</p>
 <p>These instruction were last tested on 25 August 2025. If you experience issues, I encourage you to reach out via email to <a class="reference external" href="mailto:bryant&#46;roberts&#37;&#52;&#48;adelaide&#46;edu&#46;au">bryant<span>&#46;</span>roberts<span>&#64;</span>adelaide<span>&#46;</span>edu<span>&#46;</span>au</a> or submit an issue on <a class="reference external" href="http://image.sc">image.sc</a> forum.</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../_images/cellpose_banner.png"><img alt="../_images/cellpose_banner.png" src="../_images/cellpose_banner.png" style="width: 100%;" />
@@ -477,14 +480,14 @@ document.write(`
 </pre></div>
 </div>
 <p>Don’t worry if you don’t get the desired result. You can use Miniforge Prompt instead. It is installed when you run the Miniforge installer.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you only require one version of Cellpose and/or Omnipose, then you do not need to create all the environments as described below. Just pick the environment for the version that you need.</p>
-</div>
 </section>
 </section>
 <section id="install-cellpose-omnipose">
 <h3>2 Install cellpose/omnipose<a class="headerlink" href="#install-cellpose-omnipose" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you only require one version of Cellpose and/or Omnipose, then you do not need to create all the environments as described below. Just pick the environment for the version that you need.</p>
+</div>
 <p>These are brief instructions. For an extended version of instructions refer to <a class="reference internal" href="#extended-instructions"><span class="std std-ref">Section 3</span></a> below.</p>
 <p><strong>Procedure</strong></p>
 <ol class="arabic simple">
@@ -720,8 +723,7 @@ You can now create another environment, e.g. Cellpose-SAM or Omnipose as describ
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>omnipose
 </pre></div>
 </div>
-<p>Alternatively, you can run the cellpose/omnipose GUI from a Windows <code class="docutils literal notranslate"><span class="pre">.bat</span></code> file. This let’s you open the cellpose GUI with a double-click of an icon. For instructions see the <a class="reference internal" href="#running-cellpose-from-bat-file"><span class="xref myst">Appendices</span></a>.</p>
-<p>See <span class="xref std std-ref">Appendices</span>.</p>
+<p>Alternatively, you can run the cellpose/omnipose GUI from a Windows <code class="docutils literal notranslate"><span class="pre">.bat</span></code> file. This let’s you open the cellpose GUI with a double-click of an icon. For instructions see the <a class="reference internal" href="#run-cellpose-bat"><span class="std std-ref">Appendix A</span></a>.</p>
 </section>
 <section id="testing-cellpose-3">
 <h4>4.2 Testing cellpose 3<a class="headerlink" href="#testing-cellpose-3" title="Link to this heading">#</a></h4>
@@ -833,8 +835,8 @@ You can now create another environment, e.g. Cellpose-SAM or Omnipose as describ
 </section>
 <section id="appendices">
 <h2>Appendices<a class="headerlink" href="#appendices" title="Link to this heading">#</a></h2>
-<section id="running-cellpose-from-bat-file-running-cellpose-from-bat-file">
-<h3>Running Cellpose from .bat file {#running-cellpose-from-bat-file}<a class="headerlink" href="#running-cellpose-from-bat-file-running-cellpose-from-bat-file" title="Link to this heading">#</a></h3>
+<section id="appendix-a-running-cellpose-from-bat-file">
+<span id="run-cellpose-bat"></span><h3>Appendix A: Running Cellpose from .bat file<a class="headerlink" href="#appendix-a-running-cellpose-from-bat-file" title="Link to this heading">#</a></h3>
 <p>You can create a Windows <code class="docutils literal notranslate"><span class="pre">.bat</span></code> file so that you can double-click to launch cellpose/omnipose. This will be helpful for colleagues that are less familiar with command line.</p>
 <p>Here’s how:</p>
 <ol class="arabic simple">
@@ -961,7 +963,7 @@ pause
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendices">Appendices</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-cellpose-from-bat-file-running-cellpose-from-bat-file">Running Cellpose from .bat file {#running-cellpose-from-bat-file}</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-running-cellpose-from-bat-file">Appendix A: Running Cellpose from .bat file</a></li>
 </ul>
 </li>
 </ul>

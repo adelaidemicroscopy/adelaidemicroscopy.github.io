@@ -39,7 +39,7 @@ The instructions in this documents were tested on Windows 11 OS devices with one
 **IMPORTANT:** You will need administrative privileges on your computer. Contact your IT department for support.  
 
 In the following procedure, we will install the following:
-- miniforge 
+- Miniforge: <https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe>
 - TensorFlow 2.10.0 
   - this is the final version of tensorflow with official GPU support via pip on Windows
 - StarDist 0.8.5
@@ -211,12 +211,13 @@ model = StarDist3D(conf, name='example_model', basedir='models')
 By default, the notebook is written to run a quick demonstration. We will leave it as is for now. The next post is this series will describe configuring your own notebook for full training.
 ```
 
-**4.11** Confirm that stardist training is using your local GPU
-If your environment and notebook was configured correctly, then the demo should use your system GPU. You can confirm this in `Task Manager`.
-  a. Open Task Manager. Press `Ctrl+Shift+Esc`.
-  b. Click on the `Processes` tab.
-  c. Right-click on any of the column headings (e.g., "Name", "CPU"). From the list, select "GPU" to add as a column.
-  d. Look for the `python.exe` app. When the notebook is training you should see an increase in the GPU `%`.
+**4.11** Confirm that stardist training is using your local GPU.
+
+If your environment and notebook was configured correctly, then the demo should use your system GPU. You can confirm this in `Task Manager`:
+  1. Open Task Manager. Press `Ctrl+Shift+Esc`.
+  2. Click on the `Processes` tab.
+  3. Right-click on any of the column headings (e.g., "Name", "CPU"). From the list, select "GPU" to add as a column.
+  4. Look for the `python.exe` app. When the notebook is training you should see an increase in the GPU `%`.
 
 ```{figure} ../images/python-gpu-use.png
 ---
@@ -229,10 +230,12 @@ GPU usage shown for python.exe in the Task Manager during model training
 Once the notebook run is complete, a folder called `example_model`, will be saved in the `models` folder. This is located alongside the `data` folder and our `.ipynb` files. E.g., located in `D:\adelaidemicroscopy\stardist3d\models\example_model\`
 <!--**INSERT FIGURE OF directory**--> 
 
-**4.12** Now close Jupyter notebook and exit the `stardist-train` environment
+**4.12** Close Jupyter notebook and exit the `stardist-train` environment. 
+
 Go to the Miniforge Prompt and press {kbd}`Ctrl+C`. 
 
 The terminal should now return to the `(stardist-train)` environment. Enter the below command to return to the `(base)` environment:
+
 ```bash
 mamba deactivate
 ```
@@ -283,4 +286,4 @@ I encountered a **500: Internal Server Error** when attempting to open an .ipynb
 pip uninstall charset_normalizer -y
 pip install --no-cache-dir charset_normalizer==3.3.2
 pip install --force-reinstall beautifulsoup4
-``` --> -->
+``` -->

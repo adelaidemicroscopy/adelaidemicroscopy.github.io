@@ -1,5 +1,5 @@
 # Running Cellpose in QuPath
-[Bryant Roberts](https://www.adelaide.edu.au/directory/bryant.roberts), September 2025
+[Bryant Roberts](https://www.adelaide.edu.au/directory/bryant.roberts), September 16th, 2025
 
 These instruction were last tested on 25 August 2025. If you experience issues, I encourage you to reach out via email to bryant.roberts@adelaide.edu.au or submit an issue on image.sc forum.
 
@@ -60,11 +60,11 @@ conda 25.3.1
 
 Don't worry if you don't get the desired result. You can use Miniforge Prompt instead. It is installed when you run the Miniforge installer.
 
+### 2 Install cellpose/omnipose
+
 :::{note}
 If you only require one version of Cellpose and/or Omnipose, then you do not need to create all the environments as described below. Just pick the environment for the version that you need.
 :::
-
-### 2 Install cellpose/omnipose
 
 These are brief instructions. For an extended version of instructions refer to {ref}`Section 3 <extended_instructions>` below.
 
@@ -106,7 +106,6 @@ conda deactivate
 ```
 The command prompt will change from `(cellpose3) C:\...` back to `C:\...` or similar. You can now create other environments.
 ````
-
 
 ````{tab-item} Cellpose version 4 (Cellpose-SAM)
 1. Create and activate the conda environment
@@ -283,10 +282,8 @@ For the omnipose GUI, enter the command:
 omnipose
 ```
 
-Alternatively, you can run the cellpose/omnipose GUI from a Windows `.bat` file. This let's you open the cellpose GUI with a double-click of an icon. For instructions see the [Appendices](#running-cellpose-from-bat-file).
+Alternatively, you can run the cellpose/omnipose GUI from a Windows `.bat` file. This let's you open the cellpose GUI with a double-click of an icon. For instructions see the {ref}`Appendix A <run_cellpose_bat>`.
 
-
-See {ref}`Appendices <running-cellpose-from-bat-file>`.
 
 #### 4.2 Testing cellpose 3
 1. Open a fluorescent or brightfield image.
@@ -373,7 +370,8 @@ You can now run cellpose/omnipose in QuPath via the scripts available under `Ext
 
 ## Appendices
 
-### Running Cellpose from .bat file {#running-cellpose-from-bat-file}
+(run_cellpose_bat)=
+### Appendix A: Running Cellpose from .bat file
 You can create a Windows `.bat` file so that you can double-click to launch cellpose/omnipose. This will be helpful for colleagues that are less familiar with command line. 
 
 Here's how:
