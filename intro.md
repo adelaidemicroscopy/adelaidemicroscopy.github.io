@@ -1,6 +1,6 @@
 # Welcome!
 
-My name is Bryant Roberts. I am a data specialist in Adelaide Microscopy, a core imaging facility at the University of Adelaide. In my role, I often support facility users with bioimage image analysis problems, including configuration of devices for use of many GPU-accelerated machine learning tools, e.g. stardist, cellpose, ilastik and others.
+<!-- My name is Bryant Roberts. I am a data specialist in Adelaide Microscopy, a core imaging facility at the University of Adelaide. In my role, I often support facility users with bioimage image analysis problems, including configuration of devices for use of many GPU-accelerated machine learning tools, e.g. stardist, cellpose, ilastik and others.
 
 Along the way, I've documented my efforts based on mutilple resources such as forums, tutorials and official documentation to solve common image analysis problems. Until now, these step-by-step notes have lived on a personal drive. This blog is the accumulation of my efforts in a public resource.
 
@@ -20,4 +20,4 @@ It does not go in-depth into any particular topic - check out [the Jupyter Book 
 Check out the content pages bundled with this sample book to see more.
 
 ```{tableofcontents}
-```
+``` -->
