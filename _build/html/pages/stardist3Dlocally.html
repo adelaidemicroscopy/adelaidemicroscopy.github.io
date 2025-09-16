@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pages/stardist3Dlocally';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running your own StarDist3D model in napari {#stardist-napari}" href="stardist3D-model-napari.html" />
+    <link rel="next" title="Running your own StarDist3D model in napari" href="stardist3D-model-napari.html" />
     <link rel="prev" title="Welcome!" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -391,6 +391,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -404,24 +405,24 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="training-your-stardist-2d-or-3d-model-on-local-gpu">
 <h1>Training your StarDist 2D or 3D model on local GPU<a class="headerlink" href="#training-your-stardist-2d-or-3d-model-on-local-gpu" title="Link to this heading">#</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="important admonition">
+<p class="admonition-title">Note</p>
 <p>The files used in these instructions were last accessed on 9 Sept 2025. Changes may have since been made that affect installation. No guarantees are made that instructions will work on your own device.</p>
 </div>
 <p>This post is the first in a part of a series on StarDist for nuclear segmentation:</p>
 <ul class="simple">
 <li><p>Set-up StarDist for model training on local GPU <code class="docutils literal notranslate"><span class="pre">&lt;---</span> <span class="pre">You</span> <span class="pre">are</span> <span class="pre">here!</span></code></p></li>
-<li><p>Training your own 2D/3D model on local GPU</p></li>
-<li><p>Running trained and pre-trained StarDist models in napari. See <span class="xref std std-ref">stardist-napari</span>.</p></li>
+<li><p>Training your own 2D/3D model on local GPU (in preparation)</p></li>
+<li><p><a class="reference internal" href="stardist3D-model-napari.html"><span class="std std-doc">Running trained and pre-trained StarDist models in napari</span></a></p></li>
 </ul>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>StarDist(ref,ref) is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets.</p>
-<figure class="align-default" id="id1">
+<p>StarDist is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets <span id="id1">[<a class="reference internal" href="#id3" title="Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers. Cell detection with star-convex polygons. In Medical Image Computing and Computer Assisted Intervention - MICCAI 2018 - 21st International Conference, Granada, Spain, September 16-20, 2018, Proceedings, Part II, 265–273. 2018. doi:10.1007/978-3-030-00934-2_30.">1</a>, <a class="reference internal" href="#id5" title="Martin Weigert and Uwe Schmidt. Nuclei instance segmentation and classification in histopathology images with stardist. In The IEEE International Symposium on Biomedical Imaging Challenges (ISBIC). 2022. doi:10.1109/ISBIC56247.2022.9854534.">3</a>, <a class="reference internal" href="#id4" title="Martin Weigert, Uwe Schmidt, Robert Haase, Ko Sugawara, and Gene Myers. Star-convex polyhedra for 3d object detection and segmentation in microscopy. In The IEEE Winter Conference on Applications of Computer Vision (WACV). March 2020. doi:10.1109/WACV45572.2020.9093435.">2</a>]</span>.</p>
+<figure class="align-default" id="id11">
 <a class="reference internal image-reference" href="../_images/napari-gui-he-predict.png"><img alt="Cell 1" src="../_images/napari-gui-he-predict.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Nuclear segmentation using stardist versatile (H&amp;E nuclei) model</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Nuclear segmentation using stardist versatile (H&amp;E nuclei) model</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>StarDist may provide reasonable models for nuclear segmentation out-of-the-box. However, sometimes it is necessary to train your own model for your microscopy data.</p>
@@ -595,11 +596,11 @@ a. Open Task Manager. Press <code class="docutils literal notranslate"><span cla
 b. Click on the <code class="docutils literal notranslate"><span class="pre">Processes</span></code> tab.
 c. Right-click on any of the column headings (e.g., “Name”, “CPU”). From the list, select “GPU” to add as a column.
 d. Look for the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> app. When the notebook is training you should see an increase in the GPU <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id12">
 <a class="reference internal image-reference" href="../_images/python-gpu-use.png"><img alt="Cell 1" src="../_images/python-gpu-use.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">GPU usage shown for python.exe in the Task Manager during model training</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">GPU usage shown for python.exe in the Task Manager during model training</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Once the notebook run is complete, a folder called <code class="docutils literal notranslate"><span class="pre">example_model</span></code>, will be saved in the <code class="docutils literal notranslate"><span class="pre">models</span></code> folder. This is located alongside the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder and our <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files. E.g., located in <code class="docutils literal notranslate"><span class="pre">D:\adelaidemicroscopy\stardist3d\models\example_model\</span></code></p>
@@ -611,6 +612,31 @@ Go to the Miniforge Prompt and press <kbd class="kbd compound docutils literal n
 </pre></div>
 </div>
 <p>Proceed to the next section to <code class="docutils literal notranslate"><span class="pre">Train</span> <span class="pre">your</span> <span class="pre">own</span> <span class="pre">StarDist</span> <span class="pre">model</span></code> (documentation in preparation).</p>
+</section>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers. Cell detection with star-convex polygons. In <em>Medical Image Computing and Computer Assisted Intervention - MICCAI 2018 - 21st International Conference, Granada, Spain, September 16-20, 2018, Proceedings, Part II</em>, 265–273. 2018. <a class="reference external" href="https://doi.org/10.1007/978-3-030-00934-2_30">doi:10.1007/978-3-030-00934-2_30</a>.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">2</a><span class="fn-bracket">]</span></span>
+<p>Martin Weigert, Uwe Schmidt, Robert Haase, Ko Sugawara, and Gene Myers. Star-convex polyhedra for 3d object detection and segmentation in microscopy. In <em>The IEEE Winter Conference on Applications of Computer Vision (WACV)</em>. March 2020. <a class="reference external" href="https://doi.org/10.1109/WACV45572.2020.9093435">doi:10.1109/WACV45572.2020.9093435</a>.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">3</a><span class="fn-bracket">]</span></span>
+<p>Martin Weigert and Uwe Schmidt. Nuclei instance segmentation and classification in histopathology images with stardist. In <em>The IEEE International Symposium on Biomedical Imaging Challenges (ISBIC)</em>. 2022. <a class="reference external" href="https://doi.org/10.1109/ISBIC56247.2022.9854534">doi:10.1109/ISBIC56247.2022.9854534</a>.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+</div>
+</div>
+</div>
 <!-- 
 <!-- Recently I was approached by a team of researchers that want cell counting in embryos captured with fluorescence microscopy data.
 
@@ -649,8 +675,6 @@ pip uninstall charset_normalizer -y
 pip install --no-cache-dir charset_normalizer==3.3.2
 pip install --force-reinstall beautifulsoup4
 ``` --> --></section>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -697,7 +721,7 @@ pip install --force-reinstall beautifulsoup4
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running your own StarDist3D model in napari {#stardist-napari}</p>
+        <p class="prev-next-title">Running your own StarDist3D model in napari</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -729,6 +753,7 @@ pip install --force-reinstall beautifulsoup4
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 

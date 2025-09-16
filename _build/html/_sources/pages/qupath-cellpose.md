@@ -66,7 +66,7 @@ If you only require one version of Cellpose and/or Omnipose, then you do not nee
 
 ### 2 Install cellpose/omnipose
 
-These are brief instructions. For an extended version of instructions refer to [Section 3](#3-install-cellpose-version-3-extended-instructions) below.
+These are brief instructions. For an extended version of instructions refer to {ref}`Section 3 <extended_instructions>` below.
 
 **Procedure**
 1. Open Command Prompt from the Start menu
@@ -174,7 +174,7 @@ The command prompt will change from `(omnipose) C:\...` back to `C:\...` or simi
 
 `````
 
-
+(extended_instructions)=
 ### 3 Install Cellpose version 3 extended instructions
 Open the dropdown for more detailed instructions to create the Cellpose3 conda environment.
 

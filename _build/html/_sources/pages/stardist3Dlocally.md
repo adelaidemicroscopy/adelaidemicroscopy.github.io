@@ -1,16 +1,17 @@
 # Training your StarDist 2D or 3D model on local GPU
 
-```{warning}
+```{Admonition} Note
+:class: important
 The files used in these instructions were last accessed on 9 Sept 2025. Changes may have since been made that affect installation. No guarantees are made that instructions will work on your own device.
 ```
 
 This post is the first in a part of a series on StarDist for nuclear segmentation:
 - Set-up StarDist for model training on local GPU `<--- You are here!`
-- Training your own 2D/3D model on local GPU
-- Running trained and pre-trained StarDist models in napari. See {ref}`stardist-napari`.
+- Training your own 2D/3D model on local GPU (in preparation)
+- [Running trained and pre-trained StarDist models in napari](stardist3D-model-napari.md)
 
 ## Introduction
-StarDist(ref,ref) is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets. 
+StarDist is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets {cite}`schmidt2018, weigert2020, weigert2022`. 
 
 ```{figure} ../images/napari-gui-he-predict.png
 ---
@@ -237,6 +238,12 @@ mamba deactivate
 ```
 
 Proceed to the next section to `Train your own StarDist model` (documentation in preparation).
+
+## References
+```{bibliography}
+:style: unsrt
+:cited:
+```
 
 <!-- 
 <!-- Recently I was approached by a team of researchers that want cell counting in embryos captured with fluorescence microscopy data.

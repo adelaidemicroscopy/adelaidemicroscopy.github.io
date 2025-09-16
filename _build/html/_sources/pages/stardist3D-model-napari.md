@@ -1,5 +1,5 @@
 
-# Running your own StarDist3D model in napari {#stardist-napari}
+# Running your own StarDist3D model in napari
 ## Requirements
 You should have already performed the following:
 - Installed Miniforge per this post.
