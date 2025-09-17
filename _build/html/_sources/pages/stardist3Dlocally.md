@@ -1,4 +1,4 @@
-# Training your StarDist 2D or 3D model on local GPU
+# Set-up StarDist for model training on local GPU
 
 ```{Admonition} Note
 :class: important

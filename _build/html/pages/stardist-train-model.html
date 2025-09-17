@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Set-up StarDist for model training on local GPU &#8212; Adelaide Microscopy Bioimaging</title>
+    <title>Training your StarDist 2D or 3D model on local GPU &#8212; Adelaide Microscopy Bioimaging</title>
   
   
   
@@ -57,11 +57,9 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/stardist3Dlocally';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/stardist-train-model';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running your own StarDist3D model in napari" href="stardist3D-model-napari.html" />
-    <link rel="prev" title="Welcome!" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -174,8 +174,8 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">StarDist on local GPU</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Training stardist2D/3D models on local GPU</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stardist3Dlocally.html">Training stardist2D/3D models on local GPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stardist3D-model-napari.html">Running a trained StarDist3D model in napari</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cellpose in QuPath</span></p>
@@ -252,7 +252,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpages/stardist3Dlocally.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpages/stardist-train-model.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +282,7 @@
       
       
       
-      <li><a href="../_sources/pages/stardist3Dlocally.md" target="_blank"
+      <li><a href="../_sources/pages/stardist-train-model.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,7 +366,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Set-up StarDist for model training on local GPU</h1>
+    <h1>Training your StarDist 2D or 3D model on local GPU</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -400,8 +400,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="set-up-stardist-for-model-training-on-local-gpu">
-<h1>Set-up StarDist for model training on local GPU<a class="headerlink" href="#set-up-stardist-for-model-training-on-local-gpu" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="training-your-stardist-2d-or-3d-model-on-local-gpu">
+<h1>Training your StarDist 2D or 3D model on local GPU<a class="headerlink" href="#training-your-stardist-2d-or-3d-model-on-local-gpu" title="Link to this heading">#</a></h1>
 <div class="important admonition">
 <p class="admonition-title">Note</p>
 <p>The files used in these instructions were last accessed on 9 Sept 2025. Changes may have since been made that affect installation. No guarantees are made that instructions will work on your own device.</p>
@@ -414,12 +414,12 @@ document.write(`
 </ul>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>StarDist is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets <span id="id1">[<a class="reference internal" href="#id3" title="Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers. Cell detection with star-convex polygons. In Medical Image Computing and Computer Assisted Intervention - MICCAI 2018 - 21st International Conference, Granada, Spain, September 16-20, 2018, Proceedings, Part II, 265–273. 2018. doi:10.1007/978-3-030-00934-2_30.">1</a>, <a class="reference internal" href="#id4" title="Martin Weigert, Uwe Schmidt, Robert Haase, Ko Sugawara, and Gene Myers. Star-convex polyhedra for 3d object detection and segmentation in microscopy. In The IEEE Winter Conference on Applications of Computer Vision (WACV). March 2020. doi:10.1109/WACV45572.2020.9093435.">2</a>, <a class="reference internal" href="#id5" title="Martin Weigert and Uwe Schmidt. Nuclei instance segmentation and classification in histopathology images with stardist. In The IEEE International Symposium on Biomedical Imaging Challenges (ISBIC). 2022. doi:10.1109/ISBIC56247.2022.9854534.">3</a>]</span>.</p>
+<p>StarDist is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets <span id="id1">[<a class="reference internal" href="stardist3Dlocally.html#id3" title="Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers. Cell detection with star-convex polygons. In Medical Image Computing and Computer Assisted Intervention - MICCAI 2018 - 21st International Conference, Granada, Spain, September 16-20, 2018, Proceedings, Part II, 265–273. 2018. doi:10.1007/978-3-030-00934-2_30.">1</a>, <a class="reference internal" href="stardist3Dlocally.html#id4" title="Martin Weigert, Uwe Schmidt, Robert Haase, Ko Sugawara, and Gene Myers. Star-convex polyhedra for 3d object detection and segmentation in microscopy. In The IEEE Winter Conference on Applications of Computer Vision (WACV). March 2020. doi:10.1109/WACV45572.2020.9093435.">2</a>, <a class="reference internal" href="stardist3Dlocally.html#id5" title="Martin Weigert and Uwe Schmidt. Nuclei instance segmentation and classification in histopathology images with stardist. In The IEEE International Symposium on Biomedical Imaging Challenges (ISBIC). 2022. doi:10.1109/ISBIC56247.2022.9854534.">3</a>]</span>.</p>
 <figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../_images/napari-gui-he-predict.png"><img alt="Cell 1" src="../_images/napari-gui-he-predict.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Nuclear segmentation using stardist versatile (H&amp;E nuclei) model</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+<p><span class="caption-text">Nuclear segmentation using stardist versatile (H&amp;E nuclei) model</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>StarDist may provide reasonable models for nuclear segmentation out-of-the-box. However, sometimes it is necessary to train your own model for your microscopy data.</p>
@@ -599,7 +599,7 @@ Search the notebook for the following line:</p>
 <a class="reference internal image-reference" href="../_images/python-gpu-use.png"><img alt="Cell 1" src="../_images/python-gpu-use.png" style="width: 100%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">GPU usage shown for python.exe in the Task Manager during model training</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+<p><span class="caption-text">GPU usage shown for python.exe in the Task Manager during model training</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Once the notebook run is complete, a folder called <code class="docutils literal notranslate"><span class="pre">example_model</span></code>, will be saved in the <code class="docutils literal notranslate"><span class="pre">models</span></code> folder. This is located alongside the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder and our <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files. E.g., located in <code class="docutils literal notranslate"><span class="pre">D:\adelaidemicroscopy\stardist3d\models\example_model\</span></code></p>
@@ -702,24 +702,6 @@ pip install --force-reinstall beautifulsoup4
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome!</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="stardist3D-model-napari.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running your own StarDist3D model in napari</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
