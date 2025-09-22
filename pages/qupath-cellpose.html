@@ -1,0 +1,1030 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Running Cellpose in QuPath &#8212; Adelaide Microscopy Bioimaging</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pages/qupath-cellpose';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Converting nd2 files to pyramidal ome.tiff" href="nd2-to-ometiff.html" />
+    <link rel="prev" title="Running your own StarDist3D model in napari" href="stardist3D-model-napari.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Adelaide Microscopy Bioimaging</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">StarDist on local GPU</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="stardist3Dlocally.html">Training stardist2D/3D models on local GPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stardist3D-model-napari.html">Running a trained StarDist3D model in napari</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cellpose in QuPath</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Running Cellpose/Omnipose in QuPath</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">File format conversion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="nd2-to-ometiff.html">Convert nd2 file to pyramidal ome.tiff format</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpages/qupath-cellpose.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/pages/qupath-cellpose.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Running Cellpose in QuPath</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools">Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-miniforge">1 Install Miniforge</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#download-miniforge">1.1 Download Miniforge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.2 Install Miniforge</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-cellpose-omnipose">2 Install cellpose/omnipose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-cellpose-version-3-extended-instructions">3 Install Cellpose version 3 extended instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-and-test-cellpose-omnipose">4 Run and test Cellpose/omnipose</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-cellpose-3-gui">4.1 Running the Cellpose 3 GUI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-cellpose-3">4.2 Testing cellpose 3</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-cellpose-omnipose-with-qupath">5 Link cellpose/omnipose with QuPath</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-qupath-v0-6-0">5.1 Install QuPath v0.6.0</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-cellpose-omnipose-with-qupath">5.2 Configure cellpose/omnipose with QuPath</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendices">Appendices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-running-cellpose-from-bat-file">Appendix A: Running Cellpose from .bat file</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="running-cellpose-in-qupath">
+<h1>Running Cellpose in QuPath<a class="headerlink" href="#running-cellpose-in-qupath" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://www.adelaide.edu.au/directory/bryant.roberts">Bryant Roberts</a>, September 16th, 2025</p>
+<p>These instruction were last tested on 25 August 2025. If you experience issues, I encourage you to reach out via email to <a class="reference external" href="mailto:bryant&#46;roberts&#37;&#52;&#48;adelaide&#46;edu&#46;au">bryant<span>&#46;</span>roberts<span>&#64;</span>adelaide<span>&#46;</span>edu<span>&#46;</span>au</a> or submit an issue on <a class="reference external" href="http://image.sc">image.sc</a> forum.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/cellpose_banner.png"><img alt="../_images/cellpose_banner.png" src="../_images/cellpose_banner.png" style="width: 100%;" />
+</a>
+</figure>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Cellpose, and more recently Cellpose-SAM, are generalist algorithms for cell segmentation. Cellpose can operate independently of other software, or as plug-in to FIJI, Napari or QuPath thus permitting whole slide nuclear segmentation.</p>
+<p>In this post, I will explain how to install and configure cellpose/omnipose to use independently and in QuPath software.</p>
+<p>For a demonstration of a specific Cellpose application, the reader is referred to our case study <code class="docutils literal notranslate"><span class="pre">(instructions</span> <span class="pre">in</span> <span class="pre">preparation)</span></code></p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<p>The instructions in this documents were tested on devices with Windows 11 OS with the following GPU:</p>
+<ul class="simple">
+<li><p>NVIDIA RTX A2000</p></li>
+</ul>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Link to this heading">#</a></h2>
+<!-- This section provides links to download the software/tools/scripts used in this bioimage analysis workflow -->
+<p><strong>IMPORTANT:</strong> You may need administrative privileges on your computer. Contact your IT department for support.</p>
+<p>In the following procedure, we will install the following:</p>
+<ul class="simple">
+<li><p>Miniforge: <a class="github reference external" href="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe">conda-forge/miniforge</a></p></li>
+<li><p>QuPath 0.6.0: <a class="reference external" href="https://qupath.github.io/">https://qupath.github.io/</a></p></li>
+<li><p>Cellpose version &lt;= 3 and/or Cellpose version 4 (Cellpose-SAM)</p></li>
+<li><p>Omnipose (optional)</p></li>
+<li><p>Git (optional - only required for Omnipose) :</p></li>
+</ul>
+</section>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Link to this heading">#</a></h2>
+<section id="install-miniforge">
+<h3>1 Install Miniforge<a class="headerlink" href="#install-miniforge" title="Link to this heading">#</a></h3>
+<p>We will use Miniforge to install python and open source software packages such as Cellpose.</p>
+<section id="download-miniforge">
+<h4>1.1 Download Miniforge<a class="headerlink" href="#download-miniforge" title="Link to this heading">#</a></h4>
+<p>For Windows OS, download the Miniforge Installer via the link: <a class="github reference external" href="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe">conda-forge/miniforge</a></p>
+</section>
+<section id="id1">
+<h4>1.2 Install Miniforge<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Detailed instructions to set-up Miniforge on your own device are available from Mara Lampert, TU Dresden via the below link:</p>
+<p><a class="reference external" href="https://biapol.github.io/blog/mara_lampert/getting_started_with_miniforge_and_python/readme.html">Getting started with Miniforge and Python</a></p>
+<ul class="simple">
+<li><p>Follow the instructions to install Miniforge (stop before ‘Using Conda’ as you will create your own Conda environments for cellpose/omnipose in the instructions below).</p></li>
+</ul>
+<p>We will then use Command Prompt to install separate conda environments for each version of Cellpose (version &lt;= 3, and version 4 (i.e. Cellpose-SAM)), and Omnipose.</p>
+<p>If you configured Miniforge correctly per the linked instructions (i.e., added Miniforge3 to PATH), then Command Prompt should be able to access Conda. To confirm, open Command Prompt and type the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If configured correctly, Command Prompt will return the version of conda, e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span><span class="m">25</span>.3.1
+</pre></div>
+</div>
+<p>Don’t worry if you don’t get the desired result. You can use Miniforge Prompt instead. It is installed when you run the Miniforge installer.</p>
+</section>
+</section>
+<section id="install-cellpose-omnipose">
+<h3>2 Install cellpose/omnipose<a class="headerlink" href="#install-cellpose-omnipose" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you only require one version of Cellpose and/or Omnipose, then you do not need to create all the environments as described below. Just pick the environment for the version that you need.</p>
+</div>
+<p>These are brief instructions. For an extended version of instructions refer to <a class="reference internal" href="#extended-instructions"><span class="std std-ref">Section 3</span></a> below.</p>
+<p><strong>Procedure</strong></p>
+<ol class="arabic simple">
+<li><p>Open Command Prompt from the Start menu</p></li>
+<li><p>Choose your version of cellpose/omnipose from the tabs below.</p></li>
+<li><p>Enter the following commands in each code block line-by-line to create a cellpose/omnipose environment. When prompted, type <code class="docutils literal notranslate"><span class="pre">y</span></code> and press <code class="docutils literal notranslate"><span class="pre">enter</span></code>.</p></li>
+</ol>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Cellpose version &lt;= 3</label><div class="sd-tab-content docutils">
+<ol class="arabic simple">
+<li><p>Create and activate the conda environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>cellpose3<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y<span class="w"> </span>
+conda<span class="w"> </span>activate<span class="w"> </span>cellpose3<span class="w">  </span>
+</pre></div>
+</div>
+<p>The command prompt will change from <code class="docutils literal notranslate"><span class="pre">C:\...&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">(cellpose3)</span> <span class="pre">C:\...</span></code> or similar</p>
+<ol class="arabic simple" start="2">
+<li><p>Install cellpose and dependencies</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cellpose<span class="o">[</span>gui<span class="o">]==</span><span class="m">3</span>.1.1.2<span class="w">  </span>
+pip<span class="w"> </span>uninstall<span class="w"> </span>numpy<span class="w">  </span>
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.26.4<span class="w">  </span>
+</pre></div>
+</div>
+<p>Below, replace <code class="docutils literal notranslate"><span class="pre">cu126</span></code> with <code class="docutils literal notranslate"><span class="pre">cu118</span></code> if you have an older NVIDIA driver (&lt;=525)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>torch<span class="w">  </span>
+pip3<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cu126<span class="w"> </span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>To open the cellpose GUI, enter the prompt:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellpose
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Close the GUI and deactivate the environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>deactivate
+</pre></div>
+</div>
+<p>The command prompt will change from <code class="docutils literal notranslate"><span class="pre">(cellpose3)</span> <span class="pre">C:\...</span></code> back to <code class="docutils literal notranslate"><span class="pre">C:\...</span></code> or similar. You can now create other environments.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Cellpose version 4 (Cellpose-SAM)</label><div class="sd-tab-content docutils">
+<ol class="arabic simple">
+<li><p>Create and activate the conda environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>cellpose-SAM<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y<span class="w"> </span>
+conda<span class="w"> </span>activate<span class="w"> </span>cellpose-SAM<span class="w">  </span>
+</pre></div>
+</div>
+<p>The command prompt will change from <code class="docutils literal notranslate"><span class="pre">C:\...&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">(cellpose-SAM)</span> <span class="pre">C:\...</span></code> or similar</p>
+<ol class="arabic simple" start="2">
+<li><p>Install cellpose and dependencies</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cellpose<span class="o">[</span>gui<span class="o">]</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Below, replace <code class="docutils literal notranslate"><span class="pre">cu126</span></code> with <code class="docutils literal notranslate"><span class="pre">cu118</span></code> if you have an older NVIDIA driver (&lt;=525)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>torch<span class="w">  </span>
+pip3<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cu126<span class="w"> </span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>To open the cellpose-SAM GUI, enter the prompt:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellpose
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Close the GUI and deactivate the environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>deactivate
+</pre></div>
+</div>
+<p>The command prompt will change from <code class="docutils literal notranslate"><span class="pre">(cellpose-SAM)</span> <span class="pre">C:\...</span></code> back to <code class="docutils literal notranslate"><span class="pre">C:\...</span></code> or similar. You can now create other environments.</p>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Omnipose</label><div class="sd-tab-content docutils">
+<ol class="arabic simple">
+<li><p>Create and activate the conda environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>omnipose<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9<span class="w"> </span>-y
+conda<span class="w"> </span>activate<span class="w"> </span>omnipose
+</pre></div>
+</div>
+<p>The command prompt will change from <code class="docutils literal notranslate"><span class="pre">C:\...&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">(omnipose)</span> <span class="pre">C:\...</span></code> or similar</p>
+<ol class="arabic simple" start="2">
+<li><p>Install cellpose and dependencies</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/kevinjohncutler/omnipose.git@bf456e475be4490821f782cb785bbc943bb12abb
+</pre></div>
+</div>
+<p>Below, replace <code class="docutils literal notranslate"><span class="pre">cu126</span></code> with <code class="docutils literal notranslate"><span class="pre">cu118</span></code> if you have an older NVIDIA driver (&lt;=525)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>torch<span class="w"> </span>torchvision
+pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cu126
+pip<span class="w"> </span>install<span class="w"> </span>aicsimageio<span class="w"> </span>torch_optimizer<span class="w"> </span>scikit-image
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>To open the omnipose GUI, enter the prompt:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>omnipose
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Close the GUI and deactivate the environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>deactivate
+</pre></div>
+</div>
+<p>The command prompt will change from <code class="docutils literal notranslate"><span class="pre">(omnipose)</span> <span class="pre">C:\...</span></code> back to <code class="docutils literal notranslate"><span class="pre">C:\...</span></code> or similar. You can now create other environments.</p>
+</div>
+</div>
+</section>
+<section id="install-cellpose-version-3-extended-instructions">
+<span id="extended-instructions"></span><h3>3 Install Cellpose version 3 extended instructions<a class="headerlink" href="#install-cellpose-version-3-extended-instructions" title="Link to this heading">#</a></h3>
+<p>Open the dropdown for more detailed instructions to create the Cellpose3 conda environment.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Install Cellpose 3 Extended Instructions</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<ol class="arabic simple">
+<li><p class="sd-card-text">Open Command Prompt from the Start menu</p></li>
+<li><p class="sd-card-text">Enter the following command to create a Cellpose 3 environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>cellpose3<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p class="sd-card-text">Activate the environment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>cellpose3
+</pre></div>
+</div>
+<p class="sd-card-text">The command prompt will change from <code class="docutils literal notranslate"><span class="pre">C:\...&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">(cellpose3)</span> <span class="pre">C:\...</span></code> or similar</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="pages/C:/users/a1230264/bioimaging/images/command_prompt_activate_env.png"><img alt="pages/C:/users/a1230264/bioimaging/images/command_prompt_activate_env.png" src="pages/C:/users/a1230264/bioimaging/images/command_prompt_activate_env.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Active cellpose3 environment</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p class="sd-card-text">Install cellpose (including GUI) version 3.1.1.2</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cellpose<span class="o">[</span>gui<span class="o">]==</span><span class="m">3</span>.1.1.2
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p class="sd-card-text">Downgrade to numpy v&lt;2</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>numpy
+</pre></div>
+</div>
+<p class="sd-card-text">When prompted, type <code class="docutils literal notranslate"><span class="pre">y</span></code> and press <code class="docutils literal notranslate"><span class="pre">enter</span></code></p>
+<ol class="arabic simple" start="6">
+<li><p class="sd-card-text">Install numpy version 1.26.4</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.26.4
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p class="sd-card-text">(optional for GPU-support) In the following steps we will make sure that cellpose uses our GPU</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>torch
+</pre></div>
+</div>
+<p class="sd-card-text">When prompted, type <code class="docutils literal notranslate"><span class="pre">y</span></code> and press <code class="docutils literal notranslate"><span class="pre">enter</span></code></p>
+<ol class="arabic simple" start="8">
+<li><p class="sd-card-text">We need to download packages that are precompiled with GPU enabled. Enter the command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cu126<span class="w"> </span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note that this command installs <code class="docutils literal notranslate"><span class="pre">pytorch</span></code> and <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> packages with CUDA 12.6 support. To work, CUDA 12.6 requires NVIDIA driver version <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">525</span> <span class="pre">and</span> <span class="pre">&lt;</span> <span class="pre">580</span></code>. If your GPU driver is older, you need to install from a different index (e.g., replace <code class="docutils literal notranslate"><span class="pre">cu126</span></code> with <code class="docutils literal notranslate"><span class="pre">cu118</span></code> for CUDA 11.8 that is compatible with NVIDIA driver versions <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">450</span> <span class="pre">and</span> <span class="pre">&lt;</span> <span class="pre">525</span></code>).</p>
+<p class="sd-card-text">A CUDA Toolkit and NVIDIA driver compatibility table is available in the <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/">release notes</a>.</p>
+<p class="sd-card-text">To check your NVIDIA driver version, open Command Prompt and enter the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvidia-smi
+</pre></div>
+</div>
+<p class="sd-card-text">In the second line, the <code class="docutils literal notranslate"><span class="pre">Driver</span> <span class="pre">Version:</span> <span class="pre">xxx.xx</span></code> will be listed.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/nvidia-driver-version.png"><img alt="../_images/nvidia-driver-version.png" src="../_images/nvidia-driver-version.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">NVIDIA GPU Driver Version</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="10">
+<li><p class="sd-card-text">To return to your <code class="docutils literal notranslate"><span class="pre">(base)</span></code> environment, enter the command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>deactivate
+</pre></div>
+</div>
+<p class="sd-card-text">The command prompt will change from <code class="docutils literal notranslate"><span class="pre">(cellpose3)</span> <span class="pre">C:\...</span></code> to <code class="docutils literal notranslate"><span class="pre">C:\...&gt;</span></code> or similar.
+You can now create another environment, e.g. Cellpose-SAM or Omnipose as described in Section 2.</p>
+</div>
+</details></section>
+<section id="run-and-test-cellpose-omnipose">
+<h3>4 Run and test Cellpose/omnipose<a class="headerlink" href="#run-and-test-cellpose-omnipose" title="Link to this heading">#</a></h3>
+<section id="running-the-cellpose-3-gui">
+<h4>4.1 Running the Cellpose 3 GUI<a class="headerlink" href="#running-the-cellpose-3-gui" title="Link to this heading">#</a></h4>
+<p>Before you run the cellpose/omnipose GUI you first must activate your conda environment using the command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">&lt;env_name&gt;</span></code>. Replace <code class="docutils literal notranslate"><span class="pre">&lt;env_name&gt;</span></code> with the name of your environment</p>
+<p>Let’s use cellpose version 3 as an example.</p>
+<ol class="arabic simple">
+<li><p>To activate the <code class="docutils literal notranslate"><span class="pre">cellpose3</span></code> environment, in the command prompt enter the command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>cellpose3
+</pre></div>
+</div>
+<p>The command prompt will change from <code class="docutils literal notranslate"><span class="pre">C:\...&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">(cellpose3)</span> <span class="pre">C:\...</span></code> or similar. You are now in the active <code class="docutils literal notranslate"><span class="pre">cellpose3</span></code> conda environment.</p>
+<ol class="arabic simple" start="2">
+<li><p>Run the cellpose GUI with the prompt:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellpose
+</pre></div>
+</div>
+<p>The GUI will open as shown below. If you have configured GPU support correctly, under the <code class="docutils literal notranslate"><span class="pre">Segmentation</span></code> options a check mark will appear in the <code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">GPU</span></code> box</p>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../_images/cellpose-gui-v3.png"><img alt="../_images/cellpose-gui-v3.png" src="../_images/cellpose-gui-v3.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Cellpose GUI with “use GPU” checked</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For the omnipose GUI, enter the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>omnipose
+</pre></div>
+</div>
+<p>Alternatively, you can run the cellpose/omnipose GUI from a Windows <code class="docutils literal notranslate"><span class="pre">.bat</span></code> file. This let’s you open the cellpose GUI with a double-click of an icon. For instructions see the <a class="reference internal" href="#run-cellpose-bat"><span class="std std-ref">Appendix A</span></a>.</p>
+</section>
+<section id="testing-cellpose-3">
+<h4>4.2 Testing cellpose 3<a class="headerlink" href="#testing-cellpose-3" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Open a fluorescent or brightfield image.</p></li>
+<li><p>In the left panel of the GUI, click the <code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">cyto3</span></code> button (It is under <code class="docutils literal notranslate"><span class="pre">Segmentation</span></code>).</p></li>
+<li><p>Cellpose will run the model and predict cells in the image using default parameters. An example output is show below.</p></li>
+</ol>
+<div style="display: flex; gap: 20px;"> <div style="flex: 1;">
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../_images/rice_stem.png"><img alt="Cell 1" src="../_images/rice_stem.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Rice Stem magnification 40x</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div> <div style="flex: 1;">
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../_images/cellpose_overlay_rice_stem.png"><img alt="Cell 2" src="../_images/cellpose_overlay_rice_stem.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Cellpose cyto3 prediction</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div> 
+</div> 
+<p>Note that the command prompt reports the following if the GPU is working correctly:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>**<span class="w"> </span>TORCH<span class="w"> </span>CUDA<span class="w"> </span>verson<span class="w"> </span>installed<span class="w"> </span>and<span class="w"> </span>working.<span class="w"> </span>**<span class="w"> </span>
+&gt;&gt;&gt;&gt;<span class="w"> </span>using<span class="w"> </span>GPU<span class="w"> </span><span class="o">(</span>CUDA<span class="o">)</span>
+</pre></div>
+</div>
+<p>Congratulations! You now have a working instance of Cellpose. We can now configure Cellpose to work with QuPath.</p>
+</section>
+</section>
+<section id="link-cellpose-omnipose-with-qupath">
+<h3>5 Link cellpose/omnipose with QuPath<a class="headerlink" href="#link-cellpose-omnipose-with-qupath" title="Link to this heading">#</a></h3>
+<section id="install-qupath-v0-6-0">
+<h4>5.1 Install QuPath v0.6.0<a class="headerlink" href="#install-qupath-v0-6-0" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Download <code class="docutils literal notranslate"><span class="pre">QuPath</span> <span class="pre">v0.6.0</span></code> via the link: <a class="github reference external" href="https://github.com/qupath/qupath/releases">qupath/qupath</a></p></li>
+<li><p>Run the installer. A detailed installation guide is available via the documentation <a class="reference external" href="https://qupath.readthedocs.io/en/latest/docs/intro/installation.html">https://qupath.readthedocs.io/en/latest/docs/intro/installation.html</a></p></li>
+</ol>
+</section>
+<section id="configure-cellpose-omnipose-with-qupath">
+<h4>5.2 Configure cellpose/omnipose with QuPath<a class="headerlink" href="#configure-cellpose-omnipose-with-qupath" title="Link to this heading">#</a></h4>
+<p>To install the cellpose/omnipose extension, first we need to install the QuPath-BIOP catalog.</p>
+<ol class="arabic simple">
+<li><p>Open QuPath</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Extensions</span> <span class="pre">&gt;</span> <span class="pre">Manage</span> <span class="pre">Extensions</span></code></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">extension</span> <span class="pre">catalogs</span></code></p></li>
+<li><p>Enter the catalog URL: <a class="github reference external" href="https://github.com/BIOP/qupath-biop-catalog">BIOP/qupath-biop-catalog</a></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span></code> and close the window</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Extension</span> <span class="pre">Manager</span></code>, browse and install the extensions you need. Click the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon next to <code class="docutils literal notranslate"><span class="pre">QuPath</span> <span class="pre">Cellpose</span> <span class="pre">extension</span> <span class="pre">v0.11.0</span></code></p></li>
+</ol>
+<p>Next, configure QuPath to detect your Cellpose/Omnipose environments. First, we need the path to the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> file for each environment. Let’s use <code class="docutils literal notranslate"><span class="pre">cellpose3</span></code> environment as an example.</p>
+<ol class="arabic simple">
+<li><p>Open the command prompt and activate your environment with the command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>cellpose3
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>To print the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> path enter the command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>where<span class="w"> </span>python.exe
+</pre></div>
+</div>
+<p>The command prompt may return many paths to different <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> files. Look for a path in a similar form as below, ending in <code class="docutils literal notranslate"><span class="pre">...\envs\&lt;env_name&gt;\python.exe</span></code>. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\&lt;</span>USERNAME&gt;<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\m</span>iniforge3<span class="se">\e</span>nvs<span class="se">\c</span>ellpose3<span class="se">\p</span>ython.exe
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Copy the path name.</p></li>
+<li><p>In QuPath, click <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">&gt;</span> <span class="pre">Preferences</span></code> to open the Preferences window.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Cellpose/Omnipose</span></code> drop-down, and text boxes will appear to enter the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> locations.</p></li>
+</ol>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../_images/qupath_preferences_cellpose.png"><img alt="../_images/qupath_preferences_cellpose.png" src="../_images/qupath_preferences_cellpose.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Cellpose preferences in QuPath</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Enter the path for the respective <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> files per the summary below:</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">python.exe</span></code> path</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cellpose <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> location</p></td>
+<td><p>…\envs\cellpose3\python.exe</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cellpose SAM <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> location</p></td>
+<td><p>…\envs\cellpose-SAM\python.exe</p></td>
+</tr>
+<tr class="row-even"><td><p>Omnipose <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> location</p></td>
+<td><p>…\envs\omnipose\python.exe</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You can now run cellpose/omnipose in QuPath via the scripts available under <code class="docutils literal notranslate"><span class="pre">Extensions</span> <span class="pre">&gt;</span> <span class="pre">Cellpose</span></code>. For general instructions for using the scripts, see the documentation at the link: <a class="github reference external" href="https://github.com/BIOP/qupath-extension-cellpose">BIOP/qupath-extension-cellpose</a>.</p>
+</section>
+</section>
+</section>
+<section id="appendices">
+<h2>Appendices<a class="headerlink" href="#appendices" title="Link to this heading">#</a></h2>
+<section id="appendix-a-running-cellpose-from-bat-file">
+<span id="run-cellpose-bat"></span><h3>Appendix A: Running Cellpose from .bat file<a class="headerlink" href="#appendix-a-running-cellpose-from-bat-file" title="Link to this heading">#</a></h3>
+<p>You can create a Windows <code class="docutils literal notranslate"><span class="pre">.bat</span></code> file so that you can double-click to launch cellpose/omnipose. This will be helpful for colleagues that are less familiar with command line.</p>
+<p>Here’s how:</p>
+<ol class="arabic simple">
+<li><p>Open Notepad</p></li>
+<li><p>Paste the following code:</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure you replace the environment name as appropriate on the line <code class="docutils literal notranslate"><span class="pre">CALL</span> <span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">&lt;ENV_NAME&gt;</span></code>. E.g., <code class="docutils literal notranslate"><span class="pre">cellpose3</span></code> or <code class="docutils literal notranslate"><span class="pre">omnipose</span></code>, for cellpose GUI and omnipose GUI, respectively.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>@echo<span class="w"> </span>off
+REM<span class="w"> </span>Activate<span class="w"> </span>conda<span class="w"> </span>environment<span class="w"> </span>and<span class="w"> </span>launch<span class="w"> </span>Cellpose<span class="w"> </span>GUI
+
+CALL<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;ENV_NAME&gt;<span class="w"> </span>
+cellpose
+pause
+</pre></div>
+</div>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../_images/open_bat_notepad.png"><img alt="../_images/open_bat_notepad.png" src="../_images/open_bat_notepad.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Create .bat file using notepad</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Save the file as <code class="docutils literal notranslate"><span class="pre">cellpose_gui.bat</span></code> or similar on your desktop (or wherever you like)</p>
+<ul class="simple">
+<li><p>Do not save as a <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file.</p></li>
+<li><p>In the Save dialog, set Save as type: <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Files</span></code></p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../_images/save_bat_file.png"><img alt="../_images/save_bat_file.png" src="../_images/save_bat_file.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Saving file as “.bat” and “All files” type</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Double-click the file icon and it will open the Cellpose/Omnipose GUI.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pages"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="stardist3D-model-napari.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Running your own StarDist3D model in napari</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nd2-to-ometiff.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Converting nd2 files to pyramidal ome.tiff</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools">Tools</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-miniforge">1 Install Miniforge</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#download-miniforge">1.1 Download Miniforge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.2 Install Miniforge</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-cellpose-omnipose">2 Install cellpose/omnipose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-cellpose-version-3-extended-instructions">3 Install Cellpose version 3 extended instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-and-test-cellpose-omnipose">4 Run and test Cellpose/omnipose</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-cellpose-3-gui">4.1 Running the Cellpose 3 GUI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-cellpose-3">4.2 Testing cellpose 3</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-cellpose-omnipose-with-qupath">5 Link cellpose/omnipose with QuPath</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-qupath-v0-6-0">5.1 Install QuPath v0.6.0</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-cellpose-omnipose-with-qupath">5.2 Configure cellpose/omnipose with QuPath</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendices">Appendices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-a-running-cellpose-from-bat-file">Appendix A: Running Cellpose from .bat file</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Adelaide Microscopy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
