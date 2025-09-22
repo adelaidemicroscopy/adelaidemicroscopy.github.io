@@ -25,8 +25,8 @@ parts:
       #   title: Using ilastik with GPU-support and FIJI
   - caption: File format conversion
     chapters:
-    - file: pages/nd2-ometiff
-    - title: Convert nd2 file to pyramidal ome.tiff format
+      - file: pages/nd2-ometiff
+      - title: Convert nd2 file to pyramidal ome.tiff format
 
   # - caption: About
   #   chapters:
