@@ -415,7 +415,7 @@ document.write(`
 <p>When you open the prompt window, it should look like the below image.
 <img alt="" src="../_images/miniforge-base.png" /></p>
 <p>As shown in the image, you are in the <code class="docutils literal notranslate"><span class="pre">(base)</span></code> environment. From here we will create a custom Conda environment to convert our nd2 file to ome.tiff format.</p>
-<p><strong>2.2</strong> Create the custom Conda environment <code class="docutils literal notranslate"><span class="pre">nd2-ometiff</span></code> and install Java 11 with <code class="docutils literal notranslate"><span class="pre">openjdk=11</span></code> as required by bioformat.
+<p><strong>2.2</strong> Create the custom Conda environment <code class="docutils literal notranslate"><span class="pre">nd2-ometiff</span></code> and install Java 11 with <code class="docutils literal notranslate"><span class="pre">openjdk=11</span></code> as required by Bioformats.
 Copy the following command in the Miniforge Prompt and press <kbd class="kbd docutils literal notranslate">Enter</kbd>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>nd2-ometiff<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-y<span class="w"> </span><span class="nv">openjdk</span><span class="o">=</span><span class="m">11</span><span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
 </pre></div>
@@ -426,8 +426,8 @@ Copy the following command in the Miniforge Prompt and press <kbd class="kbd doc
 </pre></div>
 </div>
 <p>The Miniforge Prompt will change from <code class="docutils literal notranslate"><span class="pre">(base)</span> <span class="pre">C:\...</span></code> to <code class="docutils literal notranslate"><span class="pre">(nd2-ometiff)</span> <span class="pre">C:\...</span></code> or similar.</p>
-<p><strong>2.4</strong> Install bioformats2raw and raw2ometiff
-Enter the following command in the Miniforge Prompt:</p>
+<p><strong>2.4</strong> Install <code class="docutils literal notranslate"><span class="pre">bioformats2raw</span></code> and <code class="docutils literal notranslate"><span class="pre">raw2ometiff</span></code> in the active environment.</p>
+<p>Enter the following command in the Miniforge Prompt:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>ome<span class="w"> </span>bioformats2raw<span class="w"> </span>raw2ometiff
 </pre></div>
 </div>
@@ -436,7 +436,7 @@ Enter the following command in the Miniforge Prompt:</p>
 raw2ometiff<span class="w"> </span>--version
 </pre></div>
 </div>
-<p>You should see the below output (or similar) if the package is installed correctly:</p>
+<p>If the package is installed correctly, you should see the below output (or similar):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="se">\p</span>ath<span class="se">\t</span>o<span class="se">\r</span>aw2ometiff<span class="se">\b</span>in
 <span class="nv">Version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.9.4
 Bio-Formats<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span>.3.1
@@ -446,7 +446,7 @@ NGFF<span class="w"> </span>specification<span class="w"> </span><span class="nv
 </section>
 <section id="convert-nd2-image-to-pyramidal-ome-tiff-format">
 <h3>3 Convert nd2 image to pyramidal ome.tiff format<a class="headerlink" href="#convert-nd2-image-to-pyramidal-ome-tiff-format" title="Link to this heading">#</a></h3>
-<p>We can now convert our nd2 image to an ome.tiff. This process is performed in two stages. Described below.</p>
+<p>We can now convert our nd2 image to an ome.tiff. This process is performed in two stages as described below.</p>
 <p><strong>3.1</strong> Convert nd2 image to Zarr using <code class="docutils literal notranslate"><span class="pre">bioformats2raw</span></code></p>
 <p>In the Miniforge Prompt, enter the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bioformats2raw<span class="w"> </span><span class="s2">&quot;C:\path\to\your_file.nd2&quot;</span><span class="w"> </span><span class="s2">&quot;C:\path\to\output.zarr&quot;</span>
@@ -462,10 +462,10 @@ NGFF<span class="w"> </span>specification<span class="w"> </span><span class="nv
 <li><p><code class="docutils literal notranslate"><span class="pre">--compression=LZW</span></code> performs lossless LZW compression on your data. This will reduce the final image size</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--rgb</span></code> writes channels in RGB as per the original data</p></li>
 </ul>
-<p>The <code class="docutils literal notranslate"><span class="pre">.ome.tiff</span></code> format image should now appear in the designated output folder.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.ome.tiff</span></code> image should now appear in the designated output folder.</p>
 <div class="important admonition">
 <p class="admonition-title">Note</p>
-<p>Make sure you point the filepath correctly to your own image data. For the file <code class="docutils literal notranslate"><span class="pre">image_001.nd2</span></code> in the folder <code class="docutils literal notranslate"><span class="pre">C:\Users\username\images</span></code> I would enter the prompts as shown below.</p>
+<p>Make sure you point the filepath correctly to your own image data. E.g, for the file <code class="docutils literal notranslate"><span class="pre">image_001.nd2</span></code> in the folder <code class="docutils literal notranslate"><span class="pre">C:\Users\username\images</span></code> I would enter the prompts as shown below.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bioformats2raw<span class="w"> </span><span class="s2">&quot;C:\Users\username\images\image_001.nd2&quot;</span><span class="w"> </span><span class="s2">&quot;C:\Users\username\images\image_001.zarr&quot;</span>
 raw2ometiff<span class="w"> </span>--compression<span class="o">=</span>LZW<span class="w"> </span>--rgb<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;C:\Users\username\images\image_001.zarr&quot;</span><span class="w"> </span><span class="s2">&quot;C:\Users\username\images\image_001.ome.tiff&quot;</span>
 </pre></div>
@@ -477,11 +477,11 @@ raw2ometiff<span class="w"> </span>--compression<span class="o">=</span>LZW<span
 <p>You can now load the image in QuPath for viewing and analysis.</p>
 <div class="important admonition">
 <p class="admonition-title">Note</p>
-<p>When you your image format from nd2 to ome.tiff, bioformats may write the “red”, “green”, and “blue” colour channels in <code class="docutils literal notranslate"><span class="pre">BGR</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RGB</span></code> order. You can fix display with the workaround describe below.</p>
+<p>When you convert your image format from nd2 to ome.tiff, bioformats may write the “red”, “green”, and “blue” colour channels in <code class="docutils literal notranslate"><span class="pre">BGR</span></code> instead of <code class="docutils literal notranslate"><span class="pre">RGB</span></code> order. You can fix this display issue with the workaround described below.</p>
 </div>
-<p><strong>4.1</strong> Open your image in QuPath
-<strong>4.2</strong> Go to <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">&gt;</span> <span class="pre">Brightness/Contrast</span></code> and the <code class="docutils literal notranslate"><span class="pre">Brightness/Contrast</span></code> window will open.
-<strong>4.3</strong> Manually reassign the lookup tables (LUTs) so that Channel 1 = Blue, Channel 2 = Green, Channel 3 = Red</p>
+<p><strong>4.1</strong> Open your image in QuPath</p>
+<p><strong>4.2</strong> Go to <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">&gt;</span> <span class="pre">Brightness/Contrast</span></code> and the <code class="docutils literal notranslate"><span class="pre">Brightness/Contrast</span></code> window will open.</p>
+<p><strong>4.3</strong> Manually reassign the lookup tables (LUTs) so that Channel 1 = Blue, Channel 2 = Green, Channel 3 = Red</p>
 <div style="display: flex; gap: 20px;"> <div style="flex: 1;">
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/nd2ometiff-rgb-view.png"><img alt="Cell 1" src="../_images/nd2ometiff-rgb-view.png" style="width: 100%;" />

@@ -15,7 +15,7 @@ When you open the prompt window, it should look like the below image.
 
 As shown in the image, you are in the `(base)` environment. From here we will create a custom Conda environment to convert our nd2 file to ome.tiff format.
 
-**2.2** Create the custom Conda environment `nd2-ometiff` and install Java 11 with `openjdk=11` as required by bioformat.
+**2.2** Create the custom Conda environment `nd2-ometiff` and install Java 11 with `openjdk=11` as required by Bioformats.
 Copy the following command in the Miniforge Prompt and press {kbd}`Enter`:
 ```bash
 conda create -n nd2-ometiff -c conda-forge -y openjdk=11 python=3.10
@@ -28,7 +28,8 @@ conda activate nd2-ometiff
 ```
 The Miniforge Prompt will change from `(base) C:\...` to `(nd2-ometiff) C:\...` or similar. 
 
-**2.4** Install bioformats2raw and raw2ometiff
+**2.4** Install `bioformats2raw` and `raw2ometiff` in the active environment.
+
 Enter the following command in the Miniforge Prompt:
 ```bash
 conda install -c ome bioformats2raw raw2ometiff
@@ -40,7 +41,7 @@ bioformats2raw --version
 raw2ometiff --version
 ```
 
-You should see the below output (or similar) if the package is installed correctly:
+If the package is installed correctly, you should see the below output (or similar):
 ```bash
 \path\to\raw2ometiff\bin
 Version = 0.9.4
@@ -49,7 +50,7 @@ NGFF specification version = 0.4
 ```
 
 ### 3 Convert nd2 image to pyramidal ome.tiff format
-We can now convert our nd2 image to an ome.tiff. This process is performed in two stages. Described below.
+We can now convert our nd2 image to an ome.tiff. This process is performed in two stages as described below.
 
 **3.1** Convert nd2 image to Zarr using `bioformats2raw`
 
@@ -69,11 +70,11 @@ raw2ometiff --compression=LZW --rgb -p "C:\path\to\output.zarr" "C:\path\to\outp
 - `--compression=LZW` performs lossless LZW compression on your data. This will reduce the final image size
 - `--rgb` writes channels in RGB as per the original data
 
-The `.ome.tiff` format image should now appear in the designated output folder.
+The `.ome.tiff` image should now appear in the designated output folder.
 
 ````{Admonition} Note
 :class: important
-Make sure you point the filepath correctly to your own image data. For the file `image_001.nd2` in the folder `C:\Users\username\images` I would enter the prompts as shown below.
+Make sure you point the filepath correctly to your own image data. E.g, for the file `image_001.nd2` in the folder `C:\Users\username\images` I would enter the prompts as shown below.
 ```bash
 bioformats2raw "C:\Users\username\images\image_001.nd2" "C:\Users\username\images\image_001.zarr"
 raw2ometiff --compression=LZW --rgb -p "C:\Users\username\images\image_001.zarr" "C:\Users\username\images\image_001.ome.tiff"
@@ -85,11 +86,13 @@ You can now load the image in QuPath for viewing and analysis.
 
 ```{Admonition} Note
 :class: important
-When you your image format from nd2 to ome.tiff, bioformats may write the "red", "green", and "blue" colour channels in `BGR` instead of `RGB` order. You can fix display with the workaround describe below.
+When you convert your image format from nd2 to ome.tiff, bioformats may write the "red", "green", and "blue" colour channels in `BGR` instead of `RGB` order. You can fix this display issue with the workaround described below.
 ```
 
 **4.1** Open your image in QuPath
+
 **4.2** Go to `View > Brightness/Contrast` and the `Brightness/Contrast` window will open.
+
 **4.3** Manually reassign the lookup tables (LUTs) so that Channel 1 = Blue, Channel 2 = Green, Channel 3 = Red
 
 <div style="display: flex; gap: 20px;"> <div style="flex: 1;">
