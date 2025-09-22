@@ -26,7 +26,7 @@ parts:
   - caption: File format conversion
     chapters:
       - file: pages/nd2-to-ometiff
-      - title: Convert nd2 file to pyramidal ome.tiff format
+        title: Convert nd2 file to pyramidal ome.tiff format
 
   # - caption: About
   #   chapters:
