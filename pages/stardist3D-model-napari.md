@@ -1,8 +1,14 @@
-
 # Running your own StarDist3D model in napari
+[Bryant Roberts](https://www.adelaide.edu.au/directory/bryant.roberts), September 17th, 2025
+
+This post is the third in a part of a series on StarDist for nuclear segmentation:
+- [Set-up StarDist for model training on local GPU](stardist3Dlocally.md)
+- [Training your own 2D/3D model on local GPU (in preparation)](stardist-train-model.md)
+- Running trained and pre-trained StarDist models in napari `<--- You are here!`
+
 ## Requirements
 You should have already performed the following:
-- Installed Miniforge per this post.
+- Installed Miniforge per [this post](https://biapol.github.io/blog/mara_lampert/getting_started_with_miniforge_and_python/readme.html).
 - Trained your own StarDist model per this post {in preparation} (optional if you plan to use the pre-trained model).
 - Installed Git (download at: <https://git-scm.com/downloads/win>)
 

@@ -1,30 +1,27 @@
 # Training your StarDist 2D or 3D model on local GPU
+[Bryant Roberts](https://www.adelaide.edu.au/directory/bryant.roberts), September 17th, 2025
 
 ```{Admonition} Note
 :class: important
 The files used in these instructions were last accessed on 9 Sept 2025. Changes may have since been made that affect installation. No guarantees are made that instructions will work on your own device.
 ```
 
-This post is the first in a part of a series on StarDist for nuclear segmentation:
-- Set-up StarDist for model training on local GPU `<--- You are here!`
-- Training your own 2D/3D model on local GPU (in preparation)
+This post is the second in a part of a series on StarDist for nuclear segmentation:
+- [Set-up StarDist for model training on local GPU](stardist3Dlocally.md)
+- Training your own 2D/3D model on local GPU (in preparation) `<--- You are here!`
 - [Running trained and pre-trained StarDist models in napari](stardist3D-model-napari.md)
 
 ## Introduction
-StarDist is a good candidate for accurate segmentation of cell nuclei in 2D and 3D datasets {cite}`schmidt2018, weigert2020, weigert2022`. 
+If you followed the instructions in [this post](stardist3Dlocally.md) you should be able to run StarDist model training on your device's local NVIDIA GPU.
 
-```{figure} ../images/napari-gui-he-predict.png
----
-alt: Cell 1
-width: 100%
----
-Nuclear segmentation using stardist versatile (H&E nuclei) model
-```
+By following instructions in this post, you will annotate your own training data, and train your own model for use in napari or FIJI.
 
+## Requirements
+For 2D data, you will need either
+- QuPath
+- FIJI with LabKit plugin
 
-StarDist may provide reasonable models for nuclear segmentation out-of-the-box. However, sometimes it is necessary to train your own model for your microscopy data.
-
-In the following procedure we will configure a PC with Windows 11 OS to train a 2D/3D StarDist model using the local system GPU. 
+For 3D data, you will need FIJI with LabKit plugin
 
 ## Requirements
 The instructions in this documents were tested on Windows 11 OS devices with one of the following NVIDIA GPUs:
@@ -46,6 +43,12 @@ In the following procedure, we will install the following:
 - napari 0.4.18
 
 <!-- Further links may also be added to additional blog posts that describe the set-up/configuration of the software -->
+
+
+## 1 Annotate your own training and test dataset
+StarDist training requires a dataset containing annotated/ground truth mask, where each object is labeled as separate instance. 
+
+Previously we ran a test using demo data available from the StarDist GitHub repository. The data is separated into training and validation data.
 
 ## Instructions
 ### 1 Install Miniforge

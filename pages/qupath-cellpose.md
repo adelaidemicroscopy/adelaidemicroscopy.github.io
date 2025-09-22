@@ -10,16 +10,16 @@ width: 100%
 ``` 
 
 ## Introduction
-Cellpose, and more recently Cellpose-SAM, are generalist algorithms for cell segmentation. Cellpose can operate independently of other software, or as plug-in to FIJI, Napari and QuPath permitting whole slide cell segmentation.
+Cellpose, and more recently Cellpose-SAM, are generalist algorithms for cell segmentation. Cellpose can operate independently of other software, or as plug-in to FIJI, Napari or QuPath thus permitting whole slide nuclear segmentation.
 
-In this post, I will explain how to install and configure cellpose to use independently and in QuPath software. 
+In this post, I will explain how to install and configure cellpose/omnipose to use independently and in QuPath software. 
 
-For a demonstration of a specific Cellpose application, the reader is referred to our case study "QuPath and Cellpose for high throughput characterization and classification of intestinal villi in broiler chicks"
+For a demonstration of a specific Cellpose application, the reader is referred to our case study `(instructions in preparation)`
 
 ## Requirements
-The instructions in this documents were tested on devices with Windows 11 OS with one of the following GPUs:
+The instructions in this documents were tested on devices with Windows 11 OS with the following GPU:
 - NVIDIA RTX A2000
-- NVIDIA RTX 3070Ti
+
 
 ## Tools
 <!-- This section provides links to download the software/tools/scripts used in this bioimage analysis workflow -->
@@ -329,7 +329,7 @@ To install the cellpose/omnipose extension, first we need to install the QuPath-
 1. Open QuPath
 2. Select `Extensions > Manage Extensions`
 3. Click `Manage extension catalogs`
-4. Enter the catalog URL: <https://github.com/BIOP/qupath-biop-catalog>
+4. Enter the catalog URL: [https://github.com/BIOP/qupath-biop-catalog](https://github.com/BIOP/qupath-biop-catalog)
 5. Click `Add` and close the window
 6. In the `Extension Manager`, browse and install the extensions you need. Click the `+` icon next to `QuPath Cellpose extension v0.11.0`
 

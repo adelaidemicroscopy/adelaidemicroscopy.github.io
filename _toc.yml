@@ -23,6 +23,10 @@ parts:
       #   title: Cellpose in QuPath for automated characterization of intestinal villi of broiler chicks 
       # - file: pages/ilastik-fiji
       #   title: Using ilastik with GPU-support and FIJI
+  - caption: File format conversion
+    chapters:
+    - file: pages/nd2-ometiff
+    - title: Convert nd2 file to pyramidal ome.tiff format
 
   # - caption: About
   #   chapters:

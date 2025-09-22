@@ -1,4 +1,5 @@
 # Set-up StarDist for model training on local GPU
+[Bryant Roberts](https://www.adelaide.edu.au/directory/bryant.roberts), September 17th, 2025
 
 ```{Admonition} Note
 :class: important
